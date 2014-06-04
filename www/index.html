@@ -23,21 +23,83 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <!-- Cordova init CSS -->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <!-- Bootstrap -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSSs -->
+        <link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+        <title>SimpleToDoApp</title>
+	
     </head>
     <body>
-        <div class="app">
+        <!--div class="app">
             <h1>Apache Cordova</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
+        </div-->
+        <div class="container">
+			<h1>Simple ToDo</h1>
+			
+			<div class="list-group">
+			  <a href="#" class="list-group-item active">
+				Cras justo odio
+			  </a>
+			  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+			  <a href="#" class="list-group-item">Morbi leo risus</a>
+			  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+			  <a href="#" class="list-group-item">Vestibulum at eros</a>
+			</div>
+        
         </div>
+      
+		<ul class="list-group">
+		  <li class="list-group-item">
+			<span class="badge">14</span>
+			Cras justo odio
+		  </li>
+		  <li class="list-group-item">
+			<span class="badge">14</span>
+			Cras justo odio
+		  </li>
+		  <li class="list-group-item">
+			<span class="badge">14</span>
+			Cras justo odio
+		  </li>
+		  <li class="list-group-item">
+			<span class="badge">14</span>
+			Cras justo odio
+		  </li>
+		</ul>
+		
+		<div class="list-group">
+		  <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+		  <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+		  <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+		  <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+		</div>
+				
+        <!-- NAVBAR FIXED -->
+        <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+			<div class="container menu">
+				<a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>
+			</div>
+			
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src="js/jquery-2.1.1.min.js"></script>
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script src="bootstrap/js/bootstrap.min.js"></script>
+
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
+        <!--script type="text/javascript" src="js/index.js"></script-->
+        <!--script type="text/javascript">
             app.initialize();
-        </script>
+        </script-->
     </body>
 </html>
