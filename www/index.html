@@ -113,7 +113,8 @@
             <div class="list">
               <div class="list list-inset">
                 <label class="item item-input">
-                  <input type="text" placeholder="ToDo Item" ng-model="data.newItem" required>
+                  <input type="text" placeholder="ToDo Item" ng-model="data.newItem" 
+                  required focus-me="{{shouldBeOpen}}"> // ?-Directive custom para poner el foco en input
                 </label>
               </div>
               <!--

@@ -62,9 +62,11 @@ app.controller('TodosCtrl', function($scope, $ionicModal, TodosService) {
   });
   $scope.openModal = function() {
     $scope.modal.show();
+    $scope.shouldBeOpen = true;
   };
   $scope.closeModal = function() {
     $scope.modal.hide();
+    $scope.shouldBeOpen = false;
   };
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
@@ -137,3 +139,19 @@ app.factory('TodosService', function() {
     }
   }
 })
+
+// DIRECTIVES
+app.directive('focusMe', function($timeout) {
+  return {
+    scope: { trigger: '@focusMe' },
+    link: function(scope, element) {
+      scope.$watch('trigger', function(value) {
+        if(value === "true") { 
+          $timeout(function() {
+            element[0].focus(); 
+          });
+        }
+      });
+    }
+  };
+});
