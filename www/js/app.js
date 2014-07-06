@@ -40,6 +40,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       todo: function($stateParams, TodosService) {
         return TodosService.getTodo($stateParams.todo)
+      },
+      idxTodo: function($stateParams) {
+        //console.log($stateParams.todo)
+        return $stateParams.todo
       }
     }
   })
@@ -87,8 +91,9 @@ app.controller('TodosCtrl', function($scope, $ionicModal, TodosService) {
   
 })
 
-app.controller('TodoCtrl', function($scope, $ionicPopup, todo) {
+app.controller('TodoCtrl', function($scope, $state, $ionicPopup, todo, idxTodo, TodosService) {
   $scope.todo = todo
+  $scope.todos = TodosService.todos
   
   // A confirm dialog
    $scope.showConfirm = function() {
@@ -98,7 +103,13 @@ app.controller('TodoCtrl', function($scope, $ionicPopup, todo) {
      });
      confirmPopup.then(function(res) {
        if(res) {
-         console.log('You are sure');
+         console.log('You are sure ' + idxTodo);
+         
+         TodosService.deleteTodo(idxTodo)
+         //$state.go("app.todos")
+         //$state.reload()
+         $state.go('app.todos.index');
+         
        } else {
          console.log('You are not sure');
        }
@@ -119,6 +130,10 @@ app.factory('TodosService', function() {
     todos: todos,
     getTodo: function(index) {
       return todos[index]
+    },
+    deleteTodo: function(index) {
+      todos.splice(index, 1)
+      console.log("Delete task " + index)
     }
   }
 })

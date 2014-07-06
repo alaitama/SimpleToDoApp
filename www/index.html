@@ -35,7 +35,8 @@
 
     <ion-nav-bar class="bar-positive">
       <ion-nav-back-button class="button-clear">
-        <i class="ion-arrow-left-c"></i> Back
+        <!--<i class="ion-arrow-left-c"></i> Back -->
+        <button class="button">back</button>
       </ion-nav-back-button>
     </ion-nav-bar>
     
@@ -99,24 +100,39 @@
   
     <script id="newTodo.html" type="text/ng-template">
       <div class="modal">
-          <div class="bar bar-header bar-calm">
+            
+          <div class="bar bar-header bar-positive">
             <button class="button" ng-click="closeModal()">back</button>
             <h1 class="title">Add Item</h1>
           </div>
-          <br></br>
-          <br></br>
+          
+          <br><br>
+          <br><br>
+          
           <form ng-submit="AddItem(data)">
             <div class="list">
               <div class="list list-inset">
                 <label class="item item-input">
-                  <input type="text" placeholder="ToDo Item" ng-model="data.newItem">
+                  <input type="text" placeholder="ToDo Item" ng-model="data.newItem" required>
                 </label>
               </div>
+              <!--
               <button class="button button-block button-positive" type="submit">
                 Add Item
               </button>
+              -->
+            </div>
+            
+            
+            <div class="tabs tabs-icon-only">
+             <a class="tab-item" ng-click="AddItem(data)">
+               <i class="icon ion-checkmark"></i>
+             </a>
             </div>
           </form>
+          
+          
+      
         </div>
     </script>
 
