@@ -51,13 +51,15 @@
     <ion-view title="Todos">
       <ion-content>
         <ion-list>
-          <ion-item ng-repeat="todo in todos"
+          <ion-item ng-repeat="todo in todos track by $index"
             class="item item-icon-right"
             ui-sref="app.todos.detail({todo: $index})">
             <span ng-class="{done: todo.done}">{{todo.title}}</span>
           </ion-item>
         </ion-list>
-    
+        
+        <br><br>
+        <br><br>
       </ion-content>
       
       <div class="tabs tabs-icon-only">
@@ -74,7 +76,8 @@
     <ion-view title="Todo">
       <ion-content>
           <div class="item">
-            <p>{{todo.title}}</p>
+            <!--p>{{todo.title}}</p-->
+            <input type="text" ng-model="todo.title" />
           </div>
 
           <div class="item item-checkbox">
@@ -90,7 +93,7 @@
          <a class="tab-item" ng-click="showConfirm()">
            <i class="icon ion-trash-b"></i>
          </a>
-         <a class="tab-item">
+         <a class="tab-item" ng-click="editTodo()">
            <i class="icon ion-edit"></i>
          </a>
       </div>

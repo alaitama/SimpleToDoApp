@@ -52,6 +52,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 // CONTROLLERS
 app.controller('TodosCtrl', function($scope, $ionicModal, TodosService) {
+  console.log("init TodosCtrl");
+  
   $scope.todos = TodosService.todos
   
   $ionicModal.fromTemplateUrl('newTodo.html', {
@@ -83,10 +85,9 @@ app.controller('TodosCtrl', function($scope, $ionicModal, TodosService) {
   
   //function to add items to the existing list
   $scope.AddItem = function (data) {
-    $scope.todos.push({
-      title: data.newItem,
-      done: false
-    });
+    
+    TodosService.addTodo(data.newItem);
+    
     data.newItem = '';
     $scope.closeModal();
   };
@@ -118,15 +119,36 @@ app.controller('TodoCtrl', function($scope, $state, $ionicPopup, todo, idxTodo, 
      });
    };
    
+   $scope.editTodo = function() {
+     console.log("init editTodo")
+     TodosService.saveTodos();
+     $state.go('app.todos.index');
+   };
+   
 })
 
 // SERVICE 
 app.factory('TodosService', function() {
+  /*
   var todos = [
       {title: "Take out the trash", done: true},
       {title: "Do laundry", done: false},
       {title: "Start cooking dinner", done: false}
    ]
+   */
+   console.log("init TodosService");
+   //todos = "";
+   var todos = localStorage.getItem("todos");
+   
+   if(todos == undefined || todos == null || todos == "") {
+     console.log("initialize todo variable");
+     todos = new Array(0);
+   }
+   else {
+     todos = JSON.parse(localStorage["todos"]);
+   }
+   //localStorage.setItem("todos", todos)
+   console.log("end TodosService");
 
   return {
     todos: todos,
@@ -136,6 +158,20 @@ app.factory('TodosService', function() {
     deleteTodo: function(index) {
       todos.splice(index, 1)
       console.log("Delete task " + index)
+      localStorage.setItem("todos", JSON.stringify(todos))
+    },
+    addTodo: function(todoTitle) {
+      console.log("addTodo");
+      
+      todos.push({
+        title: todoTitle,
+        done: false
+      });
+      
+      localStorage.setItem("todos", JSON.stringify(todos))
+    },
+    saveTodos: function() {
+      localStorage.setItem("todos", JSON.stringify(todos))
     }
   }
 })
